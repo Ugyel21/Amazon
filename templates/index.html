@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+
+<div class="products">
+  <div class="container">
+    <h1 class="lg-title">Special Shoes With Offers</h1>
+    <p class="text-light">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quos
+      sit consectetur, ipsa voluptatem vitae necessitatibus dicta veniam, optio,
+      possimus assumenda laudantium. Temporibus, quis cum.
+    </p>
+
+    <div class="product-items">
+      <!-- Check if there are any items -->
+      {% if item_details %}
+        <!-- Loop through each item -->
+        {% for item in item_details %}
+          <div class="product">
+            <div class="product-content">
+              <div class="product-img">
+                <img src="{{item.image.url}}" alt="Image of {{ item.item_name }}" />
+              </div>
+              <div class="product-btns">
+                <a href="{% url 'item-detail' item.id %}" class="btn-buy">More Details</a>
+              </div>
+            </div>
+            <p class="product-name">{{ item.item_name }}</p>
+            <p class="product-name"><span><i class="fas fa-map-marker-alt"></i></span>{{ item.location }}</p>
+            <p class="product-price">$ {{ item.price }}</p>
+          </div>
+        {% endfor %}
+      {% else %}
+        <!-- Display message if no items are available -->
+        <p class="product-name">No Stock Available.</p>
+      {% endif %}
+    </div>
+    
+  </div>
+</div>
+
+{% endblock %}

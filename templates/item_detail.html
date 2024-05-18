@@ -1,0 +1,38 @@
+{% extends 'base.html' %} 
+{% load static %} 
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/item_detail.css' %}" />
+<main class="main">
+  <div class="container">
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <img
+        src="{{item_detail.image.url}}"
+        alt="Image of {{ item.item_name }}"
+      />
+    </div>
+
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>Contact no: {{item_detail.contact_no}}</span>
+        <h1>{{item_detail.item_name}}</h1>
+        <p>Category: {{item_detail.category}}</p>
+        <p>Description: </p>
+        <p>{{item_detail.description}}</p>
+      </div>
+
+      <!-- Product Pricing -->
+      <div class="product-price">
+        <p>
+          <span><i class="fas fa-map-marker-alt"></i></span>{{ item_detail.location }}
+        </p>
+        <span>Price: ${{item_detail.price}}</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock %}
