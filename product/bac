@@ -1,0 +1,24 @@
+<VirtualHost *:80>
+    ServerAdmin admin@your-domain.com
+    ServerName your-domain.com
+    ServerAlias www.your-domain.com
+    DocumentRoot /home/ubuntu/second_products/
+    ErrorLog ${APACHE_LOG_DIR}/your-domain.com_error.log
+    CustomLog ${APACHE_LOG_DIR}/your-domain.com_access.log combined
+    Alias /static /home/ubuntu/second_products/static
+    <Directory /home/ubuntu/second_products/static>
+    Require all granted
+    </Directory>
+    Alias /media /home/ubuntu/second_products/media
+    <Directory /home/ubuntu/second_products/media>
+    Require all granted
+    </Directory>
+    <Directory /home/ubuntu/second_products/product_app>
+    <Files wsgi.py>
+    Require all granted
+    </Files>
+    </Directory>
+    WSGIDaemonProcess product_app python-path=/home/ubuntu/second_products python-home=/home/ubuntu/env
+    WSGIProcessGroup product_app
+    WSGIScriptAlias / /home/ubuntu/second_products/products/wsgi.py
+   </VirtualHost>
