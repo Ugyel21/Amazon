@@ -4,14 +4,14 @@ SOURCE_DIR="/mnt/backup"
 BACKUP_DIR="/home/ubuntu/db_backup"
 LOG_FILE="/mnt/backup/backup.log"
 
-echo "Backup started $(date)" >> $LOG_FILE
+echo "Backup started $(date)" >> "$LOG_FILE"
 
 # Loop through all files in the source directory
-for file in $SOURCE_DIR/*; do
-    if [ -f "$file"]; then # Check if it is a file
+for file in "$SOURCE_DIR"/*; do
+    if [ -f "$file" ]; then # Check if it is a file
         cp "$file" "$BACKUP_DIR"
-        echo "Copied $file to $BACKUP_DIR" >> $LOG_FILE
+        echo "Copied $file to $BACKUP_DIR" >> "$LOG_FILE"
     fi
 done
 
-echo "Backup completed at $(date)" >> $LOG_FILE
+echo "Backup completed at $(date)" >> "$LOG_FILE"
